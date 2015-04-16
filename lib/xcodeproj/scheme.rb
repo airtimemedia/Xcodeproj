@@ -296,7 +296,7 @@ module Xcodeproj
     #
     def construct_referenced_container_uri(target)
       project = target.project
-      relative_path = project.path.relative_path_from(project.path + project.root_object.project_dir_path).to_s
+      relative_path = project.path.relative_path_from(project.path + project.root_object.project_dir_path.sub("../", "../../")).to_s
       relative_path = project.path.basename if relative_path == '.'
       "container:#{relative_path}"
     end
